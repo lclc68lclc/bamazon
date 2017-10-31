@@ -57,9 +57,24 @@ function buyProducts() {
 
 function updateQuantity(x, y) {
 
+<<<<<<< HEAD
     var query = "UPDATE products SET stock_quantity = ? WHERE item_id = ?";
 
     connection.query(query, [x, y], function(err, res) {
         //console.log("Updated quantity: " + res.rowsaffected);
     });
 }
+=======
+    var query = connection.query("UPDATE products SET ? WHERE ?", [{
+                stock_quantity: x
+            },
+            {
+                item_id: y
+            }
+        ],
+        function(err, res) {
+            console.log("Updated quantity: " + res[0].stock_quantity);
+        }
+    );
+}
+>>>>>>> 10699bd25e2241391d53fc58ea8fb117adf63ba9
