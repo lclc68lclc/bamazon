@@ -5,7 +5,7 @@ var connection = mysql.createConnection({
     host: "localhost",
     port: 3306,
     user: "root",
-    password: "wantagirl6",
+    password: "",
     database: "bamazon"
 });
 
@@ -57,15 +57,9 @@ function buyProducts() {
 
 function updateQuantity(x, y) {
 
-    var query = connection.query("UPDATE products SET ? WHERE ?", [{
-                stock_quantity: x
-            },
-            {
-                item_id: y
-            }
-        ],
-        function(err, res) {
-            console.log("Updated quantity: " + res[0].stock_quantity);
-        }
-    );
+    var query = "UPDATE products SET stock_quantity = ? WHERE item_id = ?";
+
+    connection.query(query, [x, y], function(err, res) {
+        //console.log("Updated quantity: " + res.rowsaffected);
+    });
 }
